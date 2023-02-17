@@ -1,0 +1,3 @@
+# 忽略.idea 和 out目录下的所有文件
+.idea/
+out/
