@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * @Author 赵伟风
+ * @author 赵伟风
  * Description: customer对应的数据库方法
  */
 public class CustomerDao extends BaseDao {
@@ -16,18 +16,16 @@ public class CustomerDao extends BaseDao {
 
     /**
      * 查询数据库客户集合
-     * @return
+     * @return 返回数据库的数据对象集合
      */
     public List<Customer> findAll() throws SQLException, NoSuchFieldException, InstantiationException, IllegalAccessException {
 
-        List<Customer> customerList = executeQuery(Customer.class, "select * from t_customer");
-
-        return customerList;
+        return executeQuery(Customer.class, "select * from t_customer");
     }
 
     /**
      * 添加客户的方法
-     * @param customer
+     * @param customer 客户对象
      */
     public void addCustomer(Customer customer) throws SQLException {
 
@@ -38,25 +36,23 @@ public class CustomerDao extends BaseDao {
     }
 
 
-
     /**
      * 修改对象信息
-     * @param cust
+     * @param customer 客户对象
      * @return 影响行数
      */
-    public  int updateById(Customer cust) throws SQLException {
+    public  int updateById(Customer customer) throws SQLException {
 
         String sql = "update t_customer set name=?,gender=?,age=?,salary =? , phone = ? where id = ? ;";
 
-        int rows = executeUpdate(sql, cust.getName(), cust.getGender(), cust.getAge(), cust.getSalary(),
-                cust.getPhone(), cust.getId());
-        return rows;
+        return executeUpdate(sql, customer.getName(), customer.getGender(), customer.getAge(), customer.getSalary(),
+                customer.getPhone(), customer.getId());
     }
 
     /**
      * 根据id查询客户信息
-     * @param id
-     * @return
+     * @param id 索引
+     * @return 客户
      */
     public Customer findById(int id) throws SQLException, NoSuchFieldException, InstantiationException, IllegalAccessException {
 
@@ -73,10 +69,8 @@ public class CustomerDao extends BaseDao {
 
     public int removeById(int id) throws SQLException {
 
-        String sql = "delete from t_customer where id =? ;";
+        String sql = "delete from t_customer where id = ?;";
 
-        int rows = executeUpdate(sql, id);
-
-        return rows;
+        return executeUpdate(sql, id);
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author 赵伟风
+ * @author 赵伟风
  * Description: 封装dao数据库重复代码!
  * TODO:
  *    封装两个方法 一个简化非DQL
@@ -48,42 +48,38 @@ public abstract class BaseDao {
         return rows;
     }
 
+    /**
+     * TODO:
+     *      利用addBatch()实现插入批量数据的性能提升。
+     */
 
     /**
      *
      * 非DQL语句封装方法 ->返回值 固定为int
-     *
      * DQL语句封装方法 -> 返回值 是什么类型呢???  List<T>
      *                  并不是list<Map> map key和value自定义!不用先设定好!
      *                                 map 没有数据校验机制
      *                                 map 不支持反射操作
-     *
      *                 数据库数据 -> java的实体类
-     *
      *                 table
      *                     t_user
      *                       id
      *                       account
      *                       password
      *                       nickname
-     *
      *                java
      *                    User
      *                      id
      *                      account
      *                      password
      *                      nickname
-     *
      *               表中-> 一行 -> java类的一个对象  -> 多行 -> List<Java实体类> list;
-     *
-     *
      *     DQL -> List<Map> -> 一行 -> map -> List<Map>
      *
      *    <T> 声明一个泛型,不确定类型
              *    1.确定泛型 User.class T = User
              *    2.要使用反射技术属性赋值
      *    public  <T>  List<T>  executeQuery(Class<T> clazz,String sql,Object... params);
-     *
      *
      */
 
@@ -170,8 +166,6 @@ public abstract class BaseDao {
 
         return list;
     }
-
-
 
 
 }
